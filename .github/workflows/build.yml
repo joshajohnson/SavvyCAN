@@ -37,26 +37,4 @@ jobs:
         with:
           name: SavvyCAN-Linux_x64.AppImage
           path: SavvyCAN-x86_64.AppImage
-    
- 
-  pre-release:
-    name: "pre-release"
-    runs-on: "ubuntu-latest"
-    needs: [buildlinux]
-
-    steps:
-      - uses: actions/checkout@v2
-
-      - uses: actions/download-artifact@v2
-
-      - name: Display structure of downloaded files
-        run: zip -r SavvyCAN_CIBuild.zip SavvyCAN-Windows_x64
-      - uses: "marvinpinto/action-automatic-releases@latest"
-        with:
-          repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          automatic_release_tag: "continuous"
-          prerelease: true
-          title: "Development Build"
-          files: |
-            SavvyCAN-Linux_x64.AppImage/SavvyCAN-x86_64.AppImage
           
